@@ -1,6 +1,5 @@
 package com.anconasolutions.dialogtest;
 
-//import android.support.v4.app.DialogFragment;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
