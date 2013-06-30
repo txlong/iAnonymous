@@ -1,0 +1,91 @@
+@charset "utf-8";
+/************* switch buttons css starts *************/
+.dsgSwitchL {
+	display:block;
+	overflow:hidden;
+	height:24px;
+	width:76px;
+	position:relative;
+}
+.dsgSwitchS {
+	display:block;
+	overflow:hidden;
+	height:16px;
+	width:42px;
+	position:relative;
+}
+.dsgSwitchLR1, .dsgSwitchLR2, .dsgSwitchLR3, .dsgSwitchLR4 {
+	-moz-border-radius:6px 6px 6px 6px;
+	-webkit-border-radius:6px 6px 6px 6px;
+	border-radius:6px 6px 6px 6px;
+	height:24px;
+	width:76px;
+}
+.dsgSwitchSR1, .dsgSwitchSR2, .dsgSwitchSR3, .dsgSwitchSR4 {
+	-moz-border-radius:3px 3px 3px 3px;
+	-webkit-border-radius:3px 3px 3px 3px;
+	border-radius:3px 3px 3px 3px;
+	height:16px;
+	width:42px;
+}
+/* large rounded switches bg */
+.dsgSwitchLR1 {
+	background:url(../images/dsgSwitch/dsgSwitchLR1.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchLR2 {
+	background:url(../images/dsgSwitch/dsgSwitchLR2.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchLR3 {
+	background:url(../images/dsgSwitch/dsgSwitchLR3.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchLR4 {
+	background:url(../images/dsgSwitch/dsgSwitchLR4.png) 0px 0px no-repeat transparent;
+}
+/* large square switches bg */
+.dsgSwitchLS1 {
+	background:url(../images/dsgSwitch/dsgSwitchLS1.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchLS2 {
+	background:url(../images/dsgSwitch/dsgSwitchLS2.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchLS3 {
+	background:url(../images/dsgSwitch/dsgSwitchLS3.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchLS4 {
+	background:url(../images/dsgSwitch/dsgSwitchLS4.png) 0px 0px no-repeat transparent;
+}
+/* small rounded switches bg */
+.dsgSwitchSR1 {
+	background:url(../images/dsgSwitch/dsgSwitchSR1.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchSR2 {
+	background:url(../images/dsgSwitch/dsgSwitchSR2.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchSR3 {
+	background:url(../images/dsgSwitch/dsgSwitchSR3.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchSR4 {
+	background:url(../images/dsgSwitch/dsgSwitchSR4.png) 0px 0px no-repeat transparent;
+}
+/* small square switches bg */
+.dsgSwitchSS1 {
+	background:url(../images/dsgSwitch/dsgSwitchSS1.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchSS2 {
+	background:url(../images/dsgSwitch/dsgSwitchSS2.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchSS3 {
+	background:url(../images/dsgSwitch/dsgSwitchSS3.png) 0px 0px no-repeat transparent;
+}
+.dsgSwitchSS4 {
+	background:url(../images/dsgSwitch/dsgSwitchSS4.png) 0px 0px no-repeat transparent;
+}
+/* large switch is active */
+.dsgLSwitchOn {
+	background-position:-41px 0px;
+}
+/* small switch is active */
+.dsgSSwitchOn {
+	background-position:-24px 0px;
+}
+/************* switch buttons css ends *************/

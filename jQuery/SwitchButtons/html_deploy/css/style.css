@@ -1,0 +1,69 @@
+/* CSS Document */
+* {
+	margin:0;
+	padding:0;
+	border:none;
+}
+body {
+	margin:0;
+	border:none;
+	background:#f4f4f4;
+	background:url(../images/bgpat.jpg) 0 0;
+}
+html {
+	-webkit-text-size-adjust:none;
+}
+img {
+	display:block;
+	overflow:hidden;
+}
+p {
+	display:inline-block;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	margin-bottom:12px;
+	line-height:14px;
+	color:#666;
+}
+a {
+	display:inline-block;
+	color:#717171;
+	text-decoration:underline;
+}
+a:hover {
+	color:#444;
+}
+.mainWrap {
+	display:block;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	width:566px;
+	overflow:hidden;
+	margin-top:50px;
+	-moz-box-shadow:0px 0px 5px #ccc;
+	box-shadow:0px 0px 5px #ccc;
+	-webkit-box-shadow:0px 0px 5px #ccc;
+	background:#fff;
+	padding-top:15px;
+}
+.switchSet {
+	display:block;
+	margin-bottom:40px;
+	overflow:hidden;
+	padding-left:20px;
+}
+.switchSet a {
+	float:left;
+	position:relative;
+	margin-left:10px;
+	margin-right:10px;
+}
+.title {
+	display:block;
+	overflow:hidden;
+	margin-bottom:20px;
+}
+.topTitle {
+	margin-bottom:0px;
+}
