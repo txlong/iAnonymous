@@ -2,7 +2,8 @@ SwitchButtons
 =====
 来自于`designeta.com`
 
-效果图片<br/>
+效果图片
+
 ![图片演示][1]
 
 Usage:
@@ -28,5 +29,4 @@ Usage:
 
   4.open the included html file in any text editor and see the source code for more details.
 
- [1]: https://raw.github.com/txlong/iAnonymous/master/jQuery/SwitchButtons/screenshot01.jpg
- [9]: https://raw.github.com/JakeWharton/Android-ViewPagerIndicator/master/sample/screens.png
+[1]: https://raw.github.com/txlong/iAnonymous/master/jQuery/SwitchButtons/screenshot01.jpg

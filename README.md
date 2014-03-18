@@ -3,6 +3,7 @@ iAnonymous
 ![Screen](https://github.com/txlong/iAnonymous/raw/master/anonymous-logo.png)
 
 **Everyone is anonymous.**
+
 The Demos code at ordinary times.<br/>
 
 我平时收录的代码，共享给大家，也是对自己代码的备份。<br/>
@@ -13,12 +14,19 @@ The Demos code at ordinary times.<br/>
 ## Android
 1. **[SpiteViewPager](https://github.com/txlong/iAnonymous/tree/master/Android/SpiteViewPager)**
 2. **[SpriteViewPagerExample]([https://github.com/txlong/iAnonymous/tree/master/Android/SpriteViewPagerExample])**
-	* 实现无限滑动的ViewPager
+	* 1和2项目实现无限滑动的ViewPager
 	* 实现配置添加View，可以向ViewPager中添加任意的View，平且单独设置点击事件
 	* 实现项目和Demo分离，方便以后其他项目使用此Library
+3. **[AndroidDialog]([https://github.com/txlong/iAnonymous/tree/master/Android/AndroidDialog])**
+	* 通用性自定义Dialog的实现
+	* 实现可配置化，通用化，简单化
+4. **[SwitchButton]([https://github.com/txlong/iAnonymous/tree/master/Android/SwitchButton])**
+	* 类似IOS上的SwitchButton 支持滑动和动画
 
 ## jQuery
-
+1. **[SwitchButtons](https://github.com/txlong/iAnonymous/tree/master/SwitchButtons/SwitchButtons)**
+	* jQuery实现切换按钮效果
+	* html_deploy/index.html页面可以看到运行效果，效果如图
 
 ---
 # 联系方式:
@@ -27,7 +35,7 @@ The Demos code at ordinary times.<br/>
 * 欢迎加入交流群：**郑州软件开发交流群①** [320477005][4]
 
 
-License
+# License
 -------
 
     Copyright 2013-2014 Leo
