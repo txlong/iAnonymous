@@ -4,9 +4,8 @@ iAnonymous
 
 **Everyone is anonymous.**
 
-The Demos code at ordinary times.<br/>
-
-我平时收录的代码，共享给大家，也是对自己代码的备份。<br/>
+The Demos code at ordinary times.
+我平时收录的代码，共享给大家，也是对自己代码的备份。
 
 ---
 # 项目列表
@@ -24,7 +23,7 @@ The Demos code at ordinary times.<br/>
 	* 类似IOS上的SwitchButton 支持滑动和动画
 
 ## jQuery
-1. **[SwitchButtons](https://github.com/txlong/iAnonymous/tree/master/SwitchButtons/SwitchButtons)**
+1. **[SwitchButtons](https://github.com/txlong/iAnonymous/tree/master/jQuery/SwitchButtons)**
 	* jQuery实现切换按钮效果
 	* html_deploy/index.html页面可以看到运行效果，效果如图
 
@@ -32,10 +31,10 @@ The Demos code at ordinary times.<br/>
 # 联系方式:
 
 * Leo - [txlong_onz@163.com][1]
-* QQ - [417505865][2]
+* QQ - [417505865][2]<br/>
 ![Screen](https://github.com/txlong/iAnonymous/raw/master/screenshot-01.jpg)
 * 博客网站 - [txlong-onz.iteye.com][3]
-* 欢迎加入交流群 - **郑州软件开发交流群①** [320477005][4]
+* 欢迎加入交流群 - **郑州软件开发交流群①** [320477005][4]<br/>
 ![Screen](https://github.com/txlong/iAnonymous/raw/master/screenshot-02.jpg)
 
 
