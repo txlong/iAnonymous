@@ -2,12 +2,14 @@ package com.binpit.sprite;
 
 import java.util.ArrayList;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,8 +19,53 @@ import com.binpit.views.IView;
 public class SpriteViewPager extends ViewPager implements IView
 {
 	private static final int BASE_NO = Integer.MAX_VALUE / 2;
+
+	private final int FLAG_AUTO_SCROLL = 0;
+
 	private ArrayList<View> arrayList;
 	private SpriteViewPagerAdapter spriteViewPagerAdapter;
+	private int mCurrentPosition;
+	private boolean mAutoScroolFlag = false;
+	private Thread mThread = new Thread(new Runnable()
+	{
+		@Override
+		public void run()
+		{
+			while (mAutoScroolFlag)
+			{
+				try
+				{
+					Thread.sleep(2000);
+					mCurrentPosition++;
+
+					Message msg = new Message();
+					msg.what = FLAG_AUTO_SCROLL;
+					msg.arg1 = mCurrentPosition;
+					handler.sendMessage(msg);
+				}
+				catch (InterruptedException e)
+				{
+					e.printStackTrace();
+				}
+			}
+		}
+	});
+
+	@SuppressLint("HandlerLeak")
+	private Handler handler = new Handler()
+	{
+		public void handleMessage(Message msg)
+		{
+			switch (msg.what)
+			{
+			case FLAG_AUTO_SCROLL:
+				getView().setCurrentItem(mCurrentPosition);
+				break;
+			default:
+				break;
+			}
+		};
+	};
 
 	public SpriteViewPager(Context context)
 	{
@@ -33,7 +80,7 @@ public class SpriteViewPager extends ViewPager implements IView
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec)
 	{
-		int height = 0;
+		/*int height = 0;
 		for (int i = 0; i < getChildCount(); i++)
 		{
 			View child = getChildAt(i);
@@ -46,7 +93,7 @@ public class SpriteViewPager extends ViewPager implements IView
 		}
 
 		heightMeasureSpec = MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY);
-
+*/
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 	}
 
@@ -60,7 +107,9 @@ public class SpriteViewPager extends ViewPager implements IView
 		spriteViewPagerAdapter = new SpriteViewPagerAdapter(views);
 		this.setAdapter(spriteViewPagerAdapter);
 		this.setPagerIndicator(activity, views, viewGroup, indicatorIDs);
-		this.setCurrentItem(BASE_NO);
+		// 此行代码控制指示器显示在第一个位置
+		mCurrentPosition = BASE_NO - BASE_NO % views.size();
+		this.setCurrentItem(mCurrentPosition);
 	}
 
 	public void setPagerIndicator(Activity activity, ArrayList<View> views, ViewGroup viewGroup, int[] indicatorIDs)
@@ -68,8 +117,21 @@ public class SpriteViewPager extends ViewPager implements IView
 		this.setOnPageChangeListener(new SpriteViewPageChangeListener(activity, views, viewGroup, indicatorIDs));
 	}
 
+	public void setAutoScroll(boolean autoScroolFlag)
+	{
+		this.mAutoScroolFlag = autoScroolFlag;
+		if (mThread.isAlive() && mThread.isInterrupted())
+		{
+			mThread.notify();
+		}
+		else
+		{
+			mThread.start();
+		}
+	}
+
 	@Override
-	public View getView()
+	public SpriteViewPager getView()
 	{
 		return this;
 	}
@@ -111,12 +173,13 @@ public class SpriteViewPager extends ViewPager implements IView
 		@Override
 		public void onPageSelected(int arg0)
 		{
-			Log.d("txl", "index:" + arg0 % mViews.size());
+			mThread.interrupt();
+			mCurrentPosition = arg0;
 			mViewGroup.removeAllViews();
 			for (int i = 0; i < mViews.size(); i++)
 			{
 				ImageView iv = new ImageView(mActivity);
-				if (i == arg0 % mViews.size())
+				if (i == mCurrentPosition % mViews.size())
 				{
 					iv.setImageResource(mIndicatorIDs[0]);
 				}
@@ -131,6 +194,10 @@ public class SpriteViewPager extends ViewPager implements IView
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2)
 		{
+			if (!mThread.isAlive())
+			{
+				mThread.start();
+			}
 		}
 
 		@Override

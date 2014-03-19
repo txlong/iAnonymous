@@ -12,15 +12,15 @@ The Demos code at ordinary times.<br/>
 # 项目列表
 
 ## Android
-1. **[SpiteViewPager](https://github.com/txlong/iAnonymous/tree/master/Android/SpiteViewPager)**
-2. **[SpriteViewPagerExample]([https://github.com/txlong/iAnonymous/tree/master/Android/SpriteViewPagerExample])**
+1. **[SpriteViewPager](https://github.com/txlong/iAnonymous/tree/master/Android/SpiteViewPager)**
+2. **[SpriteViewPagerExample](https://github.com/txlong/iAnonymous/tree/master/Android/SpriteViewPagerExample)**
 	* 1和2项目实现无限滑动的ViewPager
 	* 实现配置添加View，可以向ViewPager中添加任意的View，平且单独设置点击事件
 	* 实现项目和Demo分离，方便以后其他项目使用此Library
-3. **[AndroidDialog]([https://github.com/txlong/iAnonymous/tree/master/Android/AndroidDialog])**
+3. **[AndroidDialog](https://github.com/txlong/iAnonymous/tree/master/Android/AndroidDialog)**
 	* 通用性自定义Dialog的实现
 	* 实现可配置化，通用化，简单化
-4. **[SwitchButton]([https://github.com/txlong/iAnonymous/tree/master/Android/SwitchButton])**
+4. **[SwitchButton](https://github.com/txlong/iAnonymous/tree/master/Android/SwitchButton)**
 	* 类似IOS上的SwitchButton 支持滑动和动画
 
 ## jQuery
@@ -31,8 +31,12 @@ The Demos code at ordinary times.<br/>
 ---
 # 联系方式:
 
-* Leo - [txlong_onz@163.com][2]
-* 欢迎加入交流群：**郑州软件开发交流群①** [320477005][4]
+* Leo - [txlong_onz@163.com][1]
+* QQ - [417505865][2]
+![Screen](https://github.com/txlong/iAnonymous/raw/master/screenshot-01.jpg)
+* 博客网站 - [txlong-onz.iteye.com][3]
+* 欢迎加入交流群 - **郑州软件开发交流群①** [320477005][4]
+![Screen](https://github.com/txlong/iAnonymous/raw/master/screenshot-02.jpg)
 
 
 # License
@@ -52,7 +56,7 @@ The Demos code at ordinary times.<br/>
     See the License for the specific language governing permissions and
     limitations under the License.
 
- [1]: http://txlong-onz.iteye.com
- [2]: Mailto://txlong_onz@163.com
- [3]: 417505865
- [4]: 320477005
+[1]: mailto://txlong_onz@163.com
+[2]: tencent://message/?uin=417505865&Menu=yes
+[3]: http://txlong-onz.iteye.com
+[4]: http://qun.qq.com/#jointhegroup/gid/320477005
