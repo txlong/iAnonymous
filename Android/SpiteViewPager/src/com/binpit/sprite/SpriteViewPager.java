@@ -10,6 +10,8 @@ import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -35,13 +37,18 @@ public class SpriteViewPager extends ViewPager implements IView
 			{
 				try
 				{
+					Log.d("txl", "isContinue:" + isContinue);
 					Thread.sleep(2000);
-					mCurrentPosition++;
+					if (isContinue)
+					{
+						Thread.sleep(2000);
+						mCurrentPosition++;
 
-					Message msg = new Message();
-					msg.what = FLAG_AUTO_SCROLL;
-					msg.arg1 = mCurrentPosition;
-					handler.sendMessage(msg);
+						Message msg = new Message();
+						msg.what = FLAG_AUTO_SCROLL;
+						msg.arg1 = mCurrentPosition;
+						handler.sendMessage(msg);
+					}
 				}
 				catch (InterruptedException e)
 				{
@@ -110,6 +117,7 @@ public class SpriteViewPager extends ViewPager implements IView
 		// 此行代码控制指示器显示在第一个位置
 		mCurrentPosition = BASE_NO - BASE_NO % views.size();
 		this.setCurrentItem(mCurrentPosition);
+		this.mThread.start();
 	}
 
 	public void setPagerIndicator(Activity activity, ArrayList<View> views, ViewGroup viewGroup, int[] indicatorIDs)
@@ -120,14 +128,27 @@ public class SpriteViewPager extends ViewPager implements IView
 	public void setAutoScroll(boolean autoScroolFlag)
 	{
 		this.mAutoScroolFlag = autoScroolFlag;
-		if (mThread.isAlive() && mThread.isInterrupted())
+	}
+
+	private boolean isContinue = true;
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event)
+	{
+		switch (event.getAction())
 		{
-			mThread.notify();
+		case MotionEvent.ACTION_DOWN:
+		case MotionEvent.ACTION_MOVE:
+			isContinue = false;
+			break;
+		case MotionEvent.ACTION_UP:
+			isContinue = true;
+			break;
+		default:
+			isContinue = true;
+			break;
 		}
-		else
-		{
-			mThread.start();
-		}
+		return super.onTouchEvent(event);
 	}
 
 	@Override
@@ -173,7 +194,6 @@ public class SpriteViewPager extends ViewPager implements IView
 		@Override
 		public void onPageSelected(int arg0)
 		{
-			mThread.interrupt();
 			mCurrentPosition = arg0;
 			mViewGroup.removeAllViews();
 			for (int i = 0; i < mViews.size(); i++)
@@ -194,10 +214,6 @@ public class SpriteViewPager extends ViewPager implements IView
 		@Override
 		public void onPageScrolled(int arg0, float arg1, int arg2)
 		{
-			if (!mThread.isAlive())
-			{
-				mThread.start();
-			}
 		}
 
 		@Override

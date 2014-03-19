@@ -8,7 +8,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import com.binpit.util.Utils;
 
 public class MainActivity extends FragmentActivity
 {
@@ -22,8 +23,8 @@ public class MainActivity extends FragmentActivity
 		setContentView(R.layout.activity_main);
 
 		mViewPager = (SpriteViewPager) findViewById(R.id.viewPager);
-		mViewPager.show(this, initData(), (ViewGroup) findViewById(R.id.pagerIndicator), initIndicator());
 		mViewPager.setAutoScroll(true);
+		mViewPager.show(this, initData(), (ViewGroup) findViewById(R.id.pagerIndicator), initIndicator());
 	}
 
 	private ArrayList<View> initData()
@@ -38,7 +39,7 @@ public class MainActivity extends FragmentActivity
 			@Override
 			public void onClick(View v)
 			{
-				Toast.makeText(MainActivity.this, "iv1", Toast.LENGTH_SHORT).show();
+				Utils.showToast(MainActivity.this, "iv1");
 			}
 		});
 
@@ -50,7 +51,7 @@ public class MainActivity extends FragmentActivity
 			@Override
 			public void onClick(View v)
 			{
-				Toast.makeText(MainActivity.this, "iv2", Toast.LENGTH_SHORT).show();
+				Utils.showToast(MainActivity.this, "iv2");
 			}
 		});
 
@@ -62,7 +63,7 @@ public class MainActivity extends FragmentActivity
 			@Override
 			public void onClick(View v)
 			{
-				Toast.makeText(MainActivity.this, "iv3", Toast.LENGTH_SHORT).show();
+				Utils.cancelToast();
 			}
 		});
 
@@ -76,5 +77,4 @@ public class MainActivity extends FragmentActivity
 		result[1] = R.drawable.svp__dot_focused;
 		return result;
 	}
-	
 }
