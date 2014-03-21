@@ -3,63 +3,105 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.binpit.sprite.SpriteViewPager
-        android:id="@+id/viewPager"
+    <RelativeLayout
+        android:id="@+id/action_bar"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <LinearLayout
-        android:id="@+id/pagerIndicator"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal" >
-    </LinearLayout>
-
-    <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2" >
+        android:layout_height="45dp"
+        android:background="@drawable/binpit_bar3" >
 
         <ImageView
+            android:id="@+id/openlinecommunity_title_ation_bar_return_image"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerInParent="true"
+            android:background="@drawable/binpit_action_bar_return_style"
+            android:padding="10dp"
+            android:src="@drawable/binpit_arr_back"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/title_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/feitaoguagnchang" />
-    </HorizontalScrollView>
-    <!--
-    <LinearLayout
+            android:layout_centerInParent="true"
+            android:text="飞淘"
+            android:textColor="#030303"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <com.binpit.sprite.SpriteImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/pic_12_xml"
-            android:text="用户中心" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#000000"
+            android:paddingTop="35dp" >
 
-        <com.binpit.sprite.SpriteImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/pic_13_xml"
-            android:text="淘金中心" />
+            <com.binpit.sprite.SpriteViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        <com.binpit.sprite.SpriteImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/pic_14_xml"
-            android:text="兑换中心" />
+            <LinearLayout
+                android:id="@+id/pagerIndicator"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:gravity="center"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </FrameLayout>
 
-        <com.binpit.sprite.SpriteImageButton
+        <LinearLayout
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/User_head"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:gravity="bottom"
+                android:text="用户名"
+                android:textColor="#FFFFFF" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/binpit_home_main" >
+
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/pic_15_xml"
-            android:text="客服中心" />
-    </LinearLayout>
-    -->
+            android:background="@drawable/binpit_home_view_top_bg" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/binpit_home_view_bottom_bg" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:background="@drawable/binpit_home_view_text_bg"
+            android:gravity="center"
+            android:text="进入淘金中心"
+            android:textColor="#656565"
+            android:textSize="20sp" />
+    </RelativeLayout>
 
 </LinearLayout>

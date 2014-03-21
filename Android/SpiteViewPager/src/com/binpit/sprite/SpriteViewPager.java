@@ -3,7 +3,6 @@ package com.binpit.sprite;
 import java.util.ArrayList;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
@@ -109,20 +108,20 @@ public class SpriteViewPager extends ViewPager implements IView
 		this.arrayList.add(view);
 	}
 
-	public void show(Activity activity, ArrayList<View> views, ViewGroup viewGroup, int[] indicatorIDs)
+	public void show(Context context, ArrayList<View> views, ViewGroup viewGroup, int[] indicatorIDs)
 	{
 		spriteViewPagerAdapter = new SpriteViewPagerAdapter(views);
 		this.setAdapter(spriteViewPagerAdapter);
-		this.setPagerIndicator(activity, views, viewGroup, indicatorIDs);
+		this.setPagerIndicator(context, views, viewGroup, indicatorIDs);
 		// 此行代码控制指示器显示在第一个位置
 		mCurrentPosition = BASE_NO - BASE_NO % views.size();
 		this.setCurrentItem(mCurrentPosition);
 		this.mThread.start();
 	}
 
-	public void setPagerIndicator(Activity activity, ArrayList<View> views, ViewGroup viewGroup, int[] indicatorIDs)
+	public void setPagerIndicator(Context context, ArrayList<View> views, ViewGroup viewGroup, int[] indicatorIDs)
 	{
-		this.setOnPageChangeListener(new SpriteViewPageChangeListener(activity, views, viewGroup, indicatorIDs));
+		this.setOnPageChangeListener(new SpriteViewPageChangeListener(context, views, viewGroup, indicatorIDs));
 	}
 
 	public void setAutoScroll(boolean autoScroolFlag)
@@ -178,14 +177,14 @@ public class SpriteViewPager extends ViewPager implements IView
 
 	class SpriteViewPageChangeListener implements OnPageChangeListener
 	{
-		private Activity mActivity;
+		private Context mContext;
 		private ArrayList<View> mViews;
 		private ViewGroup mViewGroup;
 		private int[] mIndicatorIDs;
 
-		public SpriteViewPageChangeListener(Activity activity, ArrayList<View> views, ViewGroup viewGroup, int[] indicatorIDs)
+		public SpriteViewPageChangeListener(Context context, ArrayList<View> views, ViewGroup viewGroup, int[] indicatorIDs)
 		{
-			this.mActivity = activity;
+			this.mContext = context;
 			this.mViews = views;
 			this.mViewGroup = viewGroup;
 			this.mIndicatorIDs = indicatorIDs;
@@ -198,7 +197,7 @@ public class SpriteViewPager extends ViewPager implements IView
 			mViewGroup.removeAllViews();
 			for (int i = 0; i < mViews.size(); i++)
 			{
-				ImageView iv = new ImageView(mActivity);
+				ImageView iv = new ImageView(mContext);
 				if (i == mCurrentPosition % mViews.size())
 				{
 					iv.setImageResource(mIndicatorIDs[0]);

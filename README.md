@@ -36,7 +36,7 @@ The Demos code at ordinary times.
 * 博客网站 - [txlong-onz.iteye.com][3]
 * 欢迎加入交流群 - **郑州软件开发交流群①** [320477005][4]<br/>
 ![Screen](https://github.com/txlong/iAnonymous/raw/master/screenshot-02.jpg)
-
+* [![support me](https://github.com/txlong/iAnonymous/raw/master/anonymous-alipay.png)](https://me.alipay.com/iananymous)
 
 # License
 -------
@@ -59,3 +59,4 @@ The Demos code at ordinary times.
 [2]: tencent://message/?uin=417505865&Menu=yes
 [3]: http://txlong-onz.iteye.com
 [4]: http://qun.qq.com/#jointhegroup/gid/320477005
+[5]: https://me.alipay.com/iananymous
