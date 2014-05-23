@@ -21,6 +21,9 @@ The Demos code at ordinary times.
 	* 实现可配置化，通用化，简单化
 4. **[SwitchButton](https://github.com/txlong/iAnonymous/tree/master/Android/SwitchButton)**
 	* 类似IOS上的SwitchButton 支持滑动和动画
+5. **[MoJiTutorial](https://github.com/txlong/iAnonymous/tree/master/Android/MoJiTutorial)**
+	* 墨迹天气3.0引导界面及动画实现
+	* VerticalViewPager的使用实例
 
 ## jQuery
 1. **[SwitchButtons](https://github.com/txlong/iAnonymous/tree/master/jQuery/SwitchButtons)**
