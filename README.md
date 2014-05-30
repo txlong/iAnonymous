@@ -24,6 +24,8 @@ The Demos code at ordinary times.
 5. **[MoJiTutorial](https://github.com/txlong/iAnonymous/tree/master/Android/MoJiTutorial)**
 	* 墨迹天气3.0引导界面及动画实现
 	* VerticalViewPager的使用实例
+6. **[ShimmerImageView](https://github.com/txlong/iAnonymous/tree/master/Android/ShimmerImageView)**
+	* 图片的Shimmer效果，通过设置mask层和背景层实现
 
 ## jQuery
 1. **[SwitchButtons](https://github.com/txlong/iAnonymous/tree/master/jQuery/SwitchButtons)**
