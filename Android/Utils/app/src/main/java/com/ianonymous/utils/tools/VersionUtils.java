@@ -25,9 +25,8 @@ public class VersionUtils {
             versionName = packInfo.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            return versionName;
-        }
+		}
+		return versionName;
     }
 
     /**
@@ -46,9 +45,8 @@ public class VersionUtils {
             versionCode = packInfo.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            return versionCode;
-        }
+		}
+		return versionName;
     }
 
     /**

@@ -1,12 +1,17 @@
 package com.ianonymous.utils.tools;
 
 import android.app.Activity;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
+import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
@@ -14,6 +19,7 @@ import android.view.Display;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Method;
 
 /**
@@ -126,5 +132,84 @@ public class DisplayUtils {
         canvas.save(Canvas.ALL_SAVE_FLAG);
         canvas.restore();
         return newmap;
+    }
+
+    /**
+     * Bitmap转换Drawable
+     *
+     * @param bm Bitmap对象
+     * @return Drawable对象
+     */
+    public static Drawable bitmap2Drawable(Bitmap bm) {
+        return new BitmapDrawable(bm);
+    }
+
+    /**
+     * 从资源中获取Bitmap
+     *
+     * @param activity 页面
+     * @param resId    资源ID
+     * @return Bitmap对象
+     */
+    public static Bitmap bitmapFromRes(Activity activity, int resId) {
+        Resources res = activity.getResources();
+        return BitmapFactory.decodeResource(res, resId);
+    }
+
+    /**
+     * byte[] → Bitmap
+     *
+     * @param bytes byte数组对象
+     * @return Bitmap
+     */
+    public static Bitmap bytes2Bimap(byte[] bytes) {
+        if (bytes.length == 0) {
+            return null;
+        }
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+    }
+
+    /**
+     * Bitmap → byte[]
+     *
+     * @param bm bitmap对象
+     * @return byte数组
+     */
+    public static byte[] bitmap2Bytes(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        return baos.toByteArray();
+    }
+
+
+    /**
+     * 1)Drawable → Bitmap最简单的直接从BitmapDrawable中获得
+     *
+     * @param drawable Drawable对象
+     * @return Bitmap对象
+     */
+    public static Bitmap drawable2BitmapSimple(Drawable drawable) {
+        BitmapDrawable bd = (BitmapDrawable) drawable;
+        return bd.getBitmap();
+    }
+
+    /**
+     * 2)Drawable → Bitmap使用面板获得Bitmap对象
+     *
+     * @param drawable Drawable对象
+     * @return Bitmap对象
+     */
+    public static Bitmap drawable2BitmapByCanvas(Drawable drawable) {
+        Bitmap bitmap = Bitmap.createBitmap(
+                drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(),
+                drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888 : Bitmap.Config.RGB_565
+        );
+        Canvas canvas = new Canvas(bitmap);
+        // canvas.setBitmap(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+        return bitmap;
     }
 }
