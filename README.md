@@ -26,6 +26,9 @@ The Demos code at ordinary times.
 	* VerticalViewPager的使用实例
 6. **[ShimmerImageView](https://github.com/txlong/iAnonymous/tree/master/Android/ShimmerImageView)**
 	* 图片的Shimmer效果，通过设置mask层和背景层实现
+7. **[Utils](https://github.com/txlong/iAnonymous/tree/master/Android/Utils)**
+	* Android开发所用到的工具类
+	* 追加丰富自己的工具
 
 ## jQuery
 1. **[SwitchButtons](https://github.com/txlong/iAnonymous/tree/master/jQuery/SwitchButtons)**
