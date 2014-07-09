@@ -1,6 +1,8 @@
 package com.ianonymous.utils.tools;
 
+import android.content.Context;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -9,9 +11,17 @@ import android.widget.TextView;
 import com.ianonymous.utils.R;
 
 /**
- * Created by Administrator on 2014/7/1.
+ * Created by Leo on 2014/7/1.
  */
 public class FontUtils {
+    private static Typeface mFontTypeFace = null;
+
+    public static Typeface getCustomFont(Context context) {
+        if (mFontTypeFace == null) {
+            mFontTypeFace = Typeface.createFromAsset(context.getAssets(), "fonts/jianzhiyi.ttf");
+        }
+        return mFontTypeFace;
+    }
 
     public void setTextStyle(TextView textView) {
         textView.getPaint().setFlags(Paint.UNDERLINE_TEXT_FLAG);//下划线

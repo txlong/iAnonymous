@@ -1,29 +1,42 @@
 package com.ianonymous.utils.tools;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
+import android.os.Environment;
+import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.lang.reflect.Method;
 
 /**
- * Created by txlong on 2014/6/24.
+ * Created by Leo on 2014/6/24.
  */
 public class DisplayUtils {
 
@@ -162,7 +175,7 @@ public class DisplayUtils {
      * @param bytes byte数组对象
      * @return Bitmap
      */
-    public static Bitmap bytes2Bimap(byte[] bytes) {
+    public static Bitmap bytes2Bitmap(byte[] bytes) {
         if (bytes.length == 0) {
             return null;
         }
@@ -211,5 +224,133 @@ public class DisplayUtils {
                 drawable.getIntrinsicHeight());
         drawable.draw(canvas);
         return bitmap;
+    }
+
+    /**
+     * 放大缩小图片
+     *
+     * @param bitmap    要放大的图片
+     * @param dstWidth  目标宽
+     * @param dstHeight 目标高
+     * @return
+     */
+    public static Bitmap zoomBitmap(Bitmap bitmap, int dstWidth, int dstHeight) {
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        Matrix matrix = new Matrix();
+        float scaleWidht = ((float) dstWidth / width);
+        float scaleHeight = ((float) dstHeight / height);
+        matrix.postScale(scaleWidht, scaleHeight);
+        Bitmap newbmp = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
+        return newbmp;
+    }
+
+    /**
+     * 获得圆角图片的方法
+     *
+     * @param bitmap
+     * @param roundPx 4脚幅度
+     * @return
+     */
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, float roundPx) {
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+        final RectF rectF = new RectF(rect);
+
+        paint.setAntiAlias(true);
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, rect, rect, paint);
+
+        return output;
+    }
+
+    /**
+     * 获得带倒影的图片方法
+     *
+     * @param bitmap
+     * @return
+     */
+    public static Bitmap createReflectionImageWithOrigin(Bitmap bitmap) {
+        final int reflectionGap = 4;
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+
+        Matrix matrix = new Matrix();
+        matrix.preScale(1, -1);
+
+        Bitmap reflectionImage = Bitmap.createBitmap(bitmap, 0, height / 2, width, height / 2, matrix, false);
+
+        Bitmap bitmapWithReflection = Bitmap.createBitmap(width, (height + height / 2), Bitmap.Config.ARGB_8888);
+
+        Canvas canvas = new Canvas(bitmapWithReflection);
+        canvas.drawBitmap(bitmap, 0, 0, null);
+        Paint deafalutPaint = new Paint();
+        canvas.drawRect(0, height, width, height + reflectionGap, deafalutPaint);
+
+        canvas.drawBitmap(reflectionImage, 0, height + reflectionGap, null);
+
+        Paint paint = new Paint();
+        LinearGradient shader = new LinearGradient(0, bitmap.getHeight(), 0, bitmapWithReflection.getHeight() + reflectionGap, 0x70ffffff, 0x00ffffff, Shader.TileMode.CLAMP);
+        paint.setShader(shader);
+        // Set the Transfer mode to be porter duff and destination in
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        // Draw a rectangle using the paint with our linear gradient
+        canvas.drawRect(0, height, width, bitmapWithReflection.getHeight() + reflectionGap, paint);
+
+        return bitmapWithReflection;
+    }
+
+    public static String saveBitmapToFile(Bitmap bm, String fileName) {
+        String absPath = "";
+        String str = getSDPath();
+        try {
+            File localFile1 = new File(str);
+            if (!localFile1.exists()) {
+                Log.d("MagicMirror", "Dir not exist create it " + str);
+                localFile1.mkdirs();
+                Log.d("MagicMirror", "Make dir success: " + str);
+            }
+            absPath = str + "/" + fileName;
+            File localFile2 = new File(absPath);
+            localFile2.createNewFile();
+            FileOutputStream localFileOutputStream = new FileOutputStream(localFile2);
+            bm.compress(Bitmap.CompressFormat.PNG, 100, localFileOutputStream);
+            localFileOutputStream.flush();
+            localFileOutputStream.close();
+            //Toast.makeText(this, "图片保存成功", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException localFileNotFoundException) {
+            localFileNotFoundException.printStackTrace();
+        } catch (Exception localException) {
+            localException.printStackTrace();
+        } finally {
+            bm.recycle();
+        }
+        return absPath;
+    }
+
+    public static String getSDPath() {
+        if (Environment.getExternalStorageState().equals("mounted"))
+            return Environment.getExternalStorageDirectory().toString() + "/FeitaoFace/";
+        return "ERROR:没有SD卡";
+    }
+
+    private static Toast mToast;
+
+    public static void showTip(Context context, String msg) {
+        if (mToast == null) {
+            mToast = Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+        } else {
+            mToast.setText(msg);
+            mToast.setDuration(Toast.LENGTH_SHORT);
+        }
+        mToast.show();
     }
 }

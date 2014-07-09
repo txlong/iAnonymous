@@ -7,6 +7,9 @@ import android.content.res.Resources;
 
 import java.util.Locale;
 
+/**
+ * Created by Leo on 2014/7/1.
+ */
 public class LanguageUtils {
     public static final int TYPE_LANGUAGE_CH = 0;
     public static final int TYPE_LANGUAGE_EN = 1;
@@ -55,7 +58,7 @@ public class LanguageUtils {
 
     /**
      * 初始化语言调用，最好写到onResume()中，这个方法会从SharedPreferenced中读取locale信息，如果为：
-     *
+     * <p/>
      * <li>{@link #TYPE_LANGUAGE_CH}</li>
      * <li>{@link #TYPE_LANGUAGE_EN}</li>
      *

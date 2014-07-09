@@ -4,6 +4,11 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.telephony.TelephonyManager;
+
+import java.io.InputStream;
+import java.util.Iterator;
+import java.util.Properties;
 
 /**
  * Created by Leo on 2014/6/19.
@@ -25,8 +30,8 @@ public class VersionUtils {
             versionName = packInfo.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-		}
-		return versionName;
+        }
+        return versionName;
     }
 
     /**
@@ -45,8 +50,8 @@ public class VersionUtils {
             versionCode = packInfo.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-		}
-		return versionName;
+        }
+        return versionCode;
     }
 
     /**
@@ -54,5 +59,33 @@ public class VersionUtils {
      */
     public static String getDeviceVersion() {
         return Build.VERSION.RELEASE;
+    }
+
+    public static String getDeviceId(Context context) {
+        String imei = "";
+        TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        imei = tm.getDeviceId();
+        return imei;
+    }
+
+    public static String getChannelId(Context context) {
+        String channelId = "";
+        Properties pro = new Properties();
+        try {
+            InputStream is = context.getAssets().open("channel.properties");
+            pro.load(is);
+            Iterator<Object> keySet = pro.keySet().iterator();
+            while (keySet.hasNext()) {
+                String key = String.valueOf(keySet.next());
+                String value = pro.getProperty(key);
+
+                if (key.equals("channel")) {
+                    channelId = value;
+                }
+            }
+            is.close();
+        } catch (Exception e) {
+        }
+        return channelId;
     }
 }

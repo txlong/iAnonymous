@@ -6,7 +6,9 @@ import android.widget.TextView;
 
 import com.ianonymous.utils.tools.VersionUtils;
 
-
+/**
+ * Created by Leo on 2014/6/19.
+ */
 public class MainActivity extends Activity {
     private TextView mVersionTv;
 
