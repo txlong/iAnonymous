@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MaterialTxl</string>
+    <string name="action_settings">Settings</string>
+    <string-array name="spinner">
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>Autumn</item>
+        <item>Winter</item>
+        <item>春</item>
+        <item>夏</item>
+        <item>秋</item>
+        <item>冬</item>
+    </string-array>
+</resources>
