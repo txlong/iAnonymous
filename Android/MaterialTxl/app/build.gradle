@@ -1,13 +1,17 @@
 apply plugin: 'com.android.application'
 
+ext {
+    supportLibVersion = '24.0.0'
+}
+
 android {
-    compileSdkVersion 23
-    buildToolsVersion "24.0.0 rc1"
+    compileSdkVersion 24
+    buildToolsVersion "${supportLibVersion}"
 
     defaultConfig {
         applicationId "com.ianonymous.materialtxl"
         minSdkVersion 21
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
     }
@@ -21,8 +25,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.2.1'
-    compile 'com.android.support:design:23.2.1'
-    compile 'com.android.support:cardview-v7:23.2.1'
+    compile "com.android.support:appcompat-v7:${supportLibVersion}"
+    compile "com.android.support:design:${supportLibVersion}"
+    compile "com.android.support:cardview-v7:${supportLibVersion}"
 }
